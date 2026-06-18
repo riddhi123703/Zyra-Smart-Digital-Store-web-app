@@ -166,7 +166,7 @@ export const AdminProducts = () => {
         <div>
           <h1 className="text-2xl font-bold text-white">Products</h1>
           <p className="text-gray-400 text-sm mt-1">
-            {products.length} products
+            {products?.length} products
           </p>
         </div>
         <button onClick={openCreate} className="btn-primary py-2 px-4 text-sm">
@@ -190,7 +190,7 @@ export const AdminProducts = () => {
             <div key={i} className="skeleton h-48 rounded-2xl" />
           ))}
         </div>
-      ) : filtered.length === 0 ? (
+      ) : filtered?.length === 0 ? (
         <div className="text-center py-20">
           <Package size={48} className="text-gray-700 mx-auto mb-3" />
           <p className="text-gray-400">No products found.</p>

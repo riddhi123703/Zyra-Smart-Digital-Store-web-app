@@ -93,7 +93,7 @@ export const OrderConfirmPage = () => {
           {/* Items */}
           <div className="p-5">
             <p className="text-sm font-medium text-gray-300 mb-4">
-              {order.items.length} item{order.items.length !== 1 ? 's' : ''}
+              {order.items?.length} item{order.items?.length !== 1 ? 's' : ''}
             </p>
             <div className="space-y-3">
               {order.items.map((item, i) => (

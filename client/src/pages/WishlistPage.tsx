@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Heart, ShoppingBag, Trash2 } from 'lucide-react';
-import { useWishlistStore } from '../store/useWishlistStore';
-import { useCartStore } from '../store/useCartStore';
-import type { Product } from '../types';
-import api from '../lib/api';
-import toast from 'react-hot-toast';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Heart, ShoppingBag, Trash2 } from "lucide-react";
+import { useWishlistStore } from "../store/useWishlistStore";
+import { useCartStore } from "../store/useCartStore";
+import type { Product } from "../types";
+import api from "../lib/api";
+import toast from "react-hot-toast";
 
 export const WishlistPage = () => {
   const { productIds, toggle } = useWishlistStore();
@@ -15,14 +15,21 @@ export const WishlistPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (productIds.length === 0) {
+    if (productIds?.length === 0) {
       setLoading(false);
       setProducts([]);
       return;
     }
     // Fetch each wishlisted product
-    Promise.all(productIds.map(id => api.get(`/products/${id}`).then(r => r.data.product).catch(() => null)))
-      .then(results => setProducts(results.filter(Boolean)))
+    Promise.all(
+      productIds.map((id) =>
+        api
+          .get(`/products/${id}`)
+          .then((r) => r.data.product)
+          .catch(() => null),
+      ),
+    )
+      .then((results) => setProducts(results.filter(Boolean)))
       .finally(() => setLoading(false));
   }, [productIds]);
 
@@ -32,8 +39,8 @@ export const WishlistPage = () => {
       name: product.name,
       image: product.images[0],
       price: product.price,
-      size: product.sizes[0] || 'M',
-      color: product.colors[0] || 'default',
+      size: product.sizes[0] || "M",
+      color: product.colors[0] || "default",
       quantity: 1,
     });
     toast.success(`${product.name} added to cart!`);
@@ -58,13 +65,17 @@ export const WishlistPage = () => {
     );
   }
 
-  if (productIds.length === 0) {
+  if (productIds?.length === 0) {
     return (
       <div className="min-h-screen pt-20 flex items-center justify-center">
         <div className="text-center">
           <Heart size={64} className="text-gray-700 mx-auto mb-6" />
-          <h2 className="text-2xl font-bold text-white mb-2">Your wishlist is empty</h2>
-          <p className="text-gray-400 mb-8">Save items you love to your wishlist.</p>
+          <h2 className="text-2xl font-bold text-white mb-2">
+            Your wishlist is empty
+          </h2>
+          <p className="text-gray-400 mb-8">
+            Save items you love to your wishlist.
+          </p>
           <Link to="/products" className="btn-primary px-8 py-3">
             Explore Products <ShoppingBag size={16} />
           </Link>
@@ -78,7 +89,9 @@ export const WishlistPage = () => {
       <div className="max-w-5xl mx-auto px-4 py-10">
         <div className="flex items-baseline justify-between mb-8">
           <h1 className="text-3xl font-bold text-white">My Wishlist</h1>
-          <span className="text-sm text-gray-400">{productIds.length} item{productIds.length !== 1 ? 's' : ''}</span>
+          <span className="text-sm text-gray-400">
+            {productIds?.length} item{productIds?.length !== 1 ? "s" : ""}
+          </span>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -106,11 +119,15 @@ export const WishlistPage = () => {
                 >
                   <Trash2 size={14} />
                 </button>
-                {product.comparePrice && product.comparePrice > product.price && (
-                  <span className="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">
-                    {Math.round((1 - product.price / product.comparePrice) * 100)}% OFF
-                  </span>
-                )}
+                {product.comparePrice &&
+                  product.comparePrice > product.price && (
+                    <span className="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">
+                      {Math.round(
+                        (1 - product.price / product.comparePrice) * 100,
+                      )}
+                      % OFF
+                    </span>
+                  )}
               </div>
               {/* Info */}
               <div className="p-3">
@@ -120,10 +137,15 @@ export const WishlistPage = () => {
                   </h3>
                 </Link>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-brand-400 font-bold text-sm">₹{product.price.toLocaleString()}</span>
-                  {product.comparePrice && product.comparePrice > product.price && (
-                    <span className="text-gray-500 text-xs line-through">₹{product.comparePrice.toLocaleString()}</span>
-                  )}
+                  <span className="text-brand-400 font-bold text-sm">
+                    ₹{product.price.toLocaleString()}
+                  </span>
+                  {product.comparePrice &&
+                    product.comparePrice > product.price && (
+                      <span className="text-gray-500 text-xs line-through">
+                        ₹{product.comparePrice.toLocaleString()}
+                      </span>
+                    )}
                 </div>
                 <button
                   onClick={() => handleAddToCart(product)}

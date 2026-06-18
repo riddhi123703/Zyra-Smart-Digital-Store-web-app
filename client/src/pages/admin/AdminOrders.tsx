@@ -60,7 +60,7 @@ export const AdminOrders = () => {
         <div>
           <h1 className="text-2xl font-bold text-white">Orders</h1>
           <p className="text-gray-400 text-sm mt-1">
-            {orders.length} total orders
+            {orders?.length} total orders
           </p>
         </div>
       </div>
@@ -82,7 +82,7 @@ export const AdminOrders = () => {
             <div key={i} className="skeleton h-16 rounded-xl" />
           ))}
         </div>
-      ) : filtered.length === 0 ? (
+      ) : filtered?.length === 0 ? (
         <div className="text-center py-20">
           <Package size={48} className="text-gray-700 mx-auto mb-3" />
           <p className="text-gray-400">No orders found.</p>
@@ -125,7 +125,7 @@ export const AdminOrders = () => {
                     {typeof order.user === "object" ? order.user.name : "—"}
                   </td>
                   <td className="px-4 py-3 text-gray-400">
-                    {order.items.length}
+                    {order.items?.length}
                   </td>
                   <td className="px-4 py-3 text-white font-medium">
                     ₹{order.totalPrice.toLocaleString()}

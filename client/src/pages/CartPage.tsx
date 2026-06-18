@@ -1,23 +1,28 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from 'lucide-react';
-import { useCartStore } from '../store/useCartStore';
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from "lucide-react";
+import { useCartStore } from "../store/useCartStore";
 
 export const CartPage = () => {
-  const { items, removeItem, updateQuantity, total, itemCount } = useCartStore();
+  const { items, removeItem, updateQuantity, total, itemCount } =
+    useCartStore();
   const navigate = useNavigate();
   const subtotal = total();
   const count = itemCount();
   const shipping = subtotal >= 999 ? 0 : 99;
   const grandTotal = subtotal + shipping;
 
-  if (items.length === 0) {
+  if (items?.length === 0) {
     return (
       <div className="min-h-screen pt-20 flex items-center justify-center">
         <div className="text-center">
           <ShoppingBag size={64} className="text-gray-700 mx-auto mb-6" />
-          <h2 className="text-2xl font-bold text-white mb-2">Your cart is empty</h2>
-          <p className="text-gray-400 mb-8">Looks like you haven't added anything yet.</p>
+          <h2 className="text-2xl font-bold text-white mb-2">
+            Your cart is empty
+          </h2>
+          <p className="text-gray-400 mb-8">
+            Looks like you haven't added anything yet.
+          </p>
           <Link to="/products" className="btn-primary px-8 py-3">
             Start Shopping <ArrowRight size={16} />
           </Link>
@@ -45,30 +50,48 @@ export const CartPage = () => {
               >
                 {/* Image */}
                 <div className="w-24 h-28 rounded-xl overflow-hidden flex-shrink-0 bg-surface-2">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 {/* Details */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-white truncate pr-4">{item.name}</h3>
+                  <h3 className="font-semibold text-white truncate pr-4">
+                    {item.name}
+                  </h3>
                   <div className="flex gap-2 mt-1">
-                    <span className="text-xs text-gray-400 bg-surface-2 px-2 py-0.5 rounded-full">{item.size}</span>
-                    <span className="text-xs text-gray-400 bg-surface-2 px-2 py-0.5 rounded-full capitalize">{item.color}</span>
+                    <span className="text-xs text-gray-400 bg-surface-2 px-2 py-0.5 rounded-full">
+                      {item.size}
+                    </span>
+                    <span className="text-xs text-gray-400 bg-surface-2 px-2 py-0.5 rounded-full capitalize">
+                      {item.color}
+                    </span>
                   </div>
-                  <p className="text-brand-400 font-bold mt-2">₹{(item.price * item.quantity).toLocaleString()}</p>
+                  <p className="text-brand-400 font-bold mt-2">
+                    ₹{(item.price * item.quantity).toLocaleString()}
+                  </p>
 
                   <div className="flex items-center justify-between mt-3">
                     {/* Quantity */}
                     <div className="flex items-center glass rounded-lg overflow-hidden">
                       <button
-                        onClick={() => updateQuantity(item._id, item.quantity - 1)}
+                        onClick={() =>
+                          updateQuantity(item._id, item.quantity - 1)
+                        }
                         className="px-3 py-1.5 text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
                       >
                         <Minus size={14} />
                       </button>
-                      <span className="px-3 text-sm font-medium text-white">{item.quantity}</span>
+                      <span className="px-3 text-sm font-medium text-white">
+                        {item.quantity}
+                      </span>
                       <button
-                        onClick={() => updateQuantity(item._id, item.quantity + 1)}
+                        onClick={() =>
+                          updateQuantity(item._id, item.quantity + 1)
+                        }
                         className="px-3 py-1.5 text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
                       >
                         <Plus size={14} />
@@ -89,20 +112,29 @@ export const CartPage = () => {
           {/* Summary */}
           <div className="lg:col-span-1">
             <div className="glass rounded-2xl p-6 sticky top-24">
-              <h2 className="text-lg font-bold text-white mb-6">Order Summary</h2>
+              <h2 className="text-lg font-bold text-white mb-6">
+                Order Summary
+              </h2>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between text-gray-400">
                   <span>Subtotal ({count} items)</span>
-                  <span className="text-white">₹{subtotal.toLocaleString()}</span>
+                  <span className="text-white">
+                    ₹{subtotal.toLocaleString()}
+                  </span>
                 </div>
                 <div className="flex justify-between text-gray-400">
                   <span>Shipping</span>
-                  <span className={shipping === 0 ? 'text-green-400' : 'text-white'}>
-                    {shipping === 0 ? 'Free' : `₹${shipping}`}
+                  <span
+                    className={shipping === 0 ? "text-green-400" : "text-white"}
+                  >
+                    {shipping === 0 ? "Free" : `₹${shipping}`}
                   </span>
                 </div>
                 {shipping > 0 && (
-                  <p className="text-xs text-gray-500">Add ₹{(999 - subtotal).toLocaleString()} more for free shipping</p>
+                  <p className="text-xs text-gray-500">
+                    Add ₹{(999 - subtotal).toLocaleString()} more for free
+                    shipping
+                  </p>
                 )}
                 <div className="border-t border-white/10 pt-3 flex justify-between text-white font-bold text-base">
                   <span>Total</span>
@@ -110,12 +142,15 @@ export const CartPage = () => {
                 </div>
               </div>
               <button
-                onClick={() => navigate('/checkout')}
+                onClick={() => navigate("/checkout")}
                 className="btn-primary w-full justify-center mt-6 py-3"
               >
                 Proceed to Checkout <ArrowRight size={16} />
               </button>
-              <Link to="/products" className="btn-outline w-full justify-center mt-3 py-2.5 text-sm">
+              <Link
+                to="/products"
+                className="btn-outline w-full justify-center mt-3 py-2.5 text-sm"
+              >
                 Continue Shopping
               </Link>
             </div>

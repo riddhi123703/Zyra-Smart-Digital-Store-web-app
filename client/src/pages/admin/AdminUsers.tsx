@@ -53,7 +53,7 @@ export const AdminUsers = () => {
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-white">Users</h1>
         <p className="text-gray-400 text-sm mt-1">
-          {users.length} registered users
+          {users?.length} registered users
         </p>
       </div>
 
@@ -73,7 +73,7 @@ export const AdminUsers = () => {
             <div key={i} className="skeleton h-14 rounded-xl" />
           ))}
         </div>
-      ) : filtered.length === 0 ? (
+      ) : filtered?.length === 0 ? (
         <div className="text-center py-20">
           <Users size={48} className="text-gray-700 mx-auto mb-3" />
           <p className="text-gray-400">No users found.</p>

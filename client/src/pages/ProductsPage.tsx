@@ -185,7 +185,7 @@ export const ProductsPage = () => {
                     Category
                   </h4>
                   <div className="space-y-2">
-                    {categories.length === 0 ? (
+                    {categories?.length === 0 ? (
                       <>
                         <div className="skeleton h-4 w-3/4 rounded-md" />
                         <div className="skeleton h-4 w-1/2 rounded-md" />
@@ -361,7 +361,7 @@ export const ProductsPage = () => {
                   </div>
                 ))}
               </div>
-            ) : products.length === 0 ? (
+            ) : products?.length === 0 ? (
               <div className="text-center py-20">
                 <p className="text-gray-400 text-lg">No products found.</p>
                 <button onClick={clearAll} className="btn-primary mt-4">

@@ -195,7 +195,7 @@ export const HomePage = () => {
               </div>
             ))}
           </div>
-        ) : featured.length === 0 ? (
+        ) : featured?.length === 0 ? (
           <div className="text-center py-16 text-gray-500">
             <p>No featured products yet — check back soon!</p>
             <Link to="/products" className="btn-primary mt-4 inline-flex">

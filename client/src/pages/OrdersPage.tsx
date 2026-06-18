@@ -43,7 +43,7 @@ export const OrdersPage = () => {
         <h1 className="text-3xl font-bold text-white mb-8">Order History</h1>
         {loading ? (
           <div className="space-y-4">{[...Array(3)].map((_, i) => <div key={i} className="skeleton h-28 rounded-2xl" />)}</div>
-        ) : orders.length === 0 ? (
+        ) : orders?.length === 0 ? (
           <div className="text-center py-20">
             <Package size={56} className="text-gray-700 mx-auto mb-4" />
             <p className="text-gray-400 mb-6">No orders yet.</p>
@@ -71,7 +71,7 @@ export const OrdersPage = () => {
                         </span>
                       </div>
                       <p className="text-sm text-gray-400 mt-1">
-                        {order.items.length} item{order.items.length !== 1 ? 's' : ''} · ₹{order.totalPrice.toLocaleString()}
+                        {order.items?.length} item{order.items?.length !== 1 ? 's' : ''} · ₹{order.totalPrice.toLocaleString()}
                       </p>
                       <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
                         <Clock size={12} /> {new Date(order.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -94,7 +94,7 @@ export const OrdersPage = () => {
                             {timelineSteps.map((step, index) => {
                               const activeIndex = timelineSteps.findIndex((s) => s.key === order.orderStatus);
                               const isActive = activeIndex >= index;
-                              const isLast = index === timelineSteps.length - 1;
+                              const isLast = index === timelineSteps?.length - 1;
                               const Icon = step.icon;
                               return (
                                 <div key={step.key} className="flex-1 flex items-center">
@@ -118,7 +118,7 @@ export const OrdersPage = () => {
 
                       <div>
                         <p className="text-sm font-medium text-gray-300 mb-3">
-                          {order.items.length} item{order.items.length !== 1 ? 's' : ''}
+                          {order.items?.length} item{order.items?.length !== 1 ? 's' : ''}
                         </p>
                         <div className="space-y-3">
                           {order.items.map((item, index) => (

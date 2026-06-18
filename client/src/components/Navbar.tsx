@@ -19,7 +19,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export const Navbar = () => {
   const { itemCount, toggleCart } = useCartStore();
   const { isAuthenticated, user, clearAuth } = useAuthStore();
-  const wishlistCount = useWishlistStore((state) => state.productIds.length);
+  const wishlistCount = useWishlistStore((state) => state.productIds?.length);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
