@@ -1,0 +1,45 @@
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: #f8fafc;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-surface: #ffffff;
+  --color-surface-1: #f8fafc;
+  --color-surface-2: #eef2f7;
+  --color-surface-3: #e2e8f0;
+  --color-input-bg: #ffffff;
+  --color-input-border: #d1d5db;
+  --color-glass: rgba(15, 23, 42, 0.04);
+  --color-glass-border: rgba(15, 23, 42, 0.08);
+  --color-scroll-track: #e5e7eb;
+  --color-scroll-thumb: #c026d3;
+}
+
+:root[data-theme="light"] .text-gray-300 {
+  color: #475569;
+}
+
+:root[data-theme="light"] .text-gray-400 {
+  color: #64748b;
+}
+
+:root[data-theme="light"] .text-gray-500 {
+  color: #6b7280;
+}
+
+:root[data-theme="light"] .text-white {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .bg-white\/5 {
+  background-color: rgba(15, 23, 42, 0.04);
+}
+
+:root[data-theme="light"] .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+:root[data-theme="light"] .hover\:text-white:hover {
+  color: #0f172a;
+}

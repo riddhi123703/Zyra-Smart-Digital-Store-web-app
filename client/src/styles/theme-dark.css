@@ -1,0 +1,17 @@
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #0f0f0f;
+  --color-text: #f5f5f5;
+  --color-text-muted: #9ca3af;
+  --color-border: #2e2e2e;
+  --color-surface: #0f0f0f;
+  --color-surface-1: #1a1a1a;
+  --color-surface-2: #242424;
+  --color-surface-3: #2e2e2e;
+  --color-input-bg: #1a1a1a;
+  --color-input-border: #2e2e2e;
+  --color-glass: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-scroll-track: #1a1a1a;
+  --color-scroll-thumb: #c026d3;
+}
