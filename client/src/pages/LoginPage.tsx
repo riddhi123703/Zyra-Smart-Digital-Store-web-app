@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Mail, Lock, Eye, EyeOff, Sparkles } from 'lucide-react';
-import { useAuthStore } from '../store/useAuthStore';
-import api from '../lib/api';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Eye, EyeOff, Sparkles } from "lucide-react";
+import { useAuthStore } from "../store/useAuthStore";
+import api from "../lib/api";
+import toast from "react-hot-toast";
 
 export const LoginPage = () => {
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const { setAuth } = useAuthStore();
@@ -17,12 +17,12 @@ export const LoginPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data } = await api.post('/auth/login', form);
+      const { data } = await api.post("/auth/login", form);
       setAuth(data.user, data.accessToken);
       toast.success(`Welcome back, ${data.user.name}! 👋`);
-      navigate('/');
+      navigate("/");
     } catch (err: any) {
-      toast.error(err.response?.data?.message || 'Login failed');
+      toast.error(err.response?.data?.message || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -40,23 +40,32 @@ export const LoginPage = () => {
         <div className="glass rounded-3xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <Link to="/" className="font-display text-3xl font-bold gradient-text inline-block mb-2">
+            <Link
+              to="/"
+              className="font-display text-3xl font-bold gradient-text inline-block mb-2"
+            >
               ZYRA
             </Link>
             <h1 className="text-2xl font-bold text-white mt-2">Welcome back</h1>
-            <p className="text-gray-400 text-sm mt-1">Sign in to your account</p>
+            <p className="text-gray-400 text-sm mt-1">
+              Sign in to your account
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Email address</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1.5">
+                Email address
+              </label>
               <div className="relative">
                 {/* <Mail size={16} className="input-icon-left text-gray-500" /> */}
                 <input
                   type="email"
                   value={form.email}
-                  onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, email: e.target.value }))
+                  }
                   className="input-base pl-10"
                   placeholder="you@example.com"
                   required
@@ -67,13 +76,17 @@ export const LoginPage = () => {
 
             {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Password</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1.5">
+                Password
+              </label>
               <div className="relative">
                 {/* <Lock size={16} className="input-icon-left text-gray-500" /> */}
                 <input
-                  type={showPw ? 'text' : 'password'}
+                  type={showPw ? "text" : "password"}
                   value={form.password}
-                  onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, password: e.target.value }))
+                  }
                   className="input-base pl-10 pr-10"
                   placeholder="••••••••"
                   required
@@ -81,7 +94,7 @@ export const LoginPage = () => {
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPw(s => !s)}
+                  onClick={() => setShowPw((s) => !s)}
                   className="input-icon-right text-gray-500 hover:text-gray-300"
                 >
                   {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -108,8 +121,11 @@ export const LoginPage = () => {
           </form>
 
           <p className="text-center text-sm text-gray-400 mt-6">
-            Don't have an account?{' '}
-            <Link to="/register" className="text-brand-400 hover:text-brand-300 font-medium">
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              className="text-brand-400 hover:text-brand-300 font-medium"
+            >
               Create one
             </Link>
           </p>
