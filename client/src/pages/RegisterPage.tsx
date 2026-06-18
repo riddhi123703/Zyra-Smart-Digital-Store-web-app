@@ -77,7 +77,7 @@ export const RegisterPage = () => {
       onClick={() => setShowPw((s) => !s)}
       className="input-icon-right text-gray-500 hover:text-gray-300"
     >
-      {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
+      {showPw ? <EyeOff size={16} /> : <Eye size={16} />} <Lock size={16} />
     </button>
   );
 
@@ -106,22 +106,37 @@ export const RegisterPage = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {field("name", "Full Name", "text", "Your name", User)}
-            {field("email", "Email address", "email", "you@example.com", Mail)}
+            {field(
+              "name",
+              "Full Name",
+              "text",
+              "Your name",
+              <User size={16} />,
+            )}
+
+            {field(
+              "email",
+              "Email address",
+              "email",
+              "you@example.com",
+              <Mail size={16} />,
+            )}
+
             {field(
               "password",
               "Password",
               showPw ? "text" : "password",
               "••••••••",
-              Lock,
+              // <Lock size={16} />,
               pwToggle,
             )}
+
             {field(
               "confirm",
               "Confirm Password",
               showPw ? "text" : "password",
               "••••••••",
-              Lock,
+              <Lock size={16} />,
             )}
 
             <button
