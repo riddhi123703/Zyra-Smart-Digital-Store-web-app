@@ -15,7 +15,7 @@ export const WishlistPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (productIds?.length === 0) {
+    if (!productIds?.length) {
       setLoading(false);
       setProducts([]);
       return;
@@ -95,7 +95,7 @@ export const WishlistPage = () => {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-          {products.map((product, i) => (
+          {products?.map((product, i) => (
             <motion.div
               key={product._id}
               initial={{ opacity: 0, y: 20 }}

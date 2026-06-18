@@ -371,7 +371,7 @@ export const ProductsPage = () => {
             ) : (
               <>
                 <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-5">
-                  {products.map((p) => (
+                  {products?.map((p) => (
                     <ProductCard key={p._id} product={p} />
                   ))}
                 </div>
